@@ -156,11 +156,11 @@ function articleMaker(articleObj){
   
 
 
-  headerTwo.textContent = data.title;
-  date.textContent = data.date;
-  pOne.textContent = data.firstParagraph;
-  pTwo.textContent = data.secondParagraph;
-  pThree.textContent = data.thirdParagraph;
+  headerTwo.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  pOne.textContent = articleObj.firstParagraph;
+  pTwo.textContent = articleObj.secondParagraph;
+  pThree.textContent = articleObj.thirdParagraph;
   expandButton.textContent = "+";
 
 
@@ -174,7 +174,9 @@ function articleMaker(articleObj){
 
 
 data.forEach(article => {
-  document.querySelector('div.articles').appendChild(articleMaker(article));
+  const articleWrapper = document.querySelector('div.articles');
+  const articleList = articleMaker(article);
+  articleWrapper.appendChild(articleList);
 
 })
 
