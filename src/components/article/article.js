@@ -131,31 +131,28 @@ const data = [
 
 
 function articleMaker(articleObj){
-  const article = document.createElement("div");
+  const articleWrapper = document.createElement("div");
   const headerTwo = document.createElement("h2");
   const date = document.createElement("p");
   const pOne = document.createElement("p");
   const pTwo = document.createElement("p");
   const pThree = document.createElement("p");
-  const span = document.createElement("span");
-  const openButton = document.createElement("button");
-  const closeButton = document.createElement("button");
+  const expandButton = document.createElement("span");
 
 
-  article.appendChild(headerTwo);
-  article.appendChild(date);
-  article.appendChild(pOne);
-  article.appendChild(pTwo);
-  article.appendChild(pThree);
-  article.appendChild(span);
-  span.appendChild(openButton);
-  span.appendChild(closeButton);
+
+  articleWrapper.appendChild(headerTwo);
+  articleWrapper.appendChild(date);
+  articleWrapper.appendChild(pOne);
+  articleWrapper.appendChild(pTwo);
+  articleWrapper.appendChild(pThree);
+  articleWrapper.appendChild(expandButton);
+  
 
 
-  article.classList.add("article");
+  articleWrapper.classList.add("article");
   date.classList.add("date");
-  span.classList.add("expandButton");
-  openButton.classList.add("article-open", "close");
+  expandButton.classList.add("expandButton");
   
 
 
@@ -164,25 +161,20 @@ function articleMaker(articleObj){
   pOne.textContent = data.firstParagraph;
   pTwo.textContent = data.secondParagraph;
   pThree.textContent = data.thirdParagraph;
-  span.textContent = "+";
+  expandButton.textContent = "+";
 
 
-  span.expandaddEventListener("click", () =>{
-    openButton.classList.toggle("article-open");
+  expandButton.addEventListener("click", () =>{
+    articleWrapper.classList.toggle("article-open");
   })
 
 
-  return article;
+  return articleObj;
 }
 
 
-const articles = document.querySelector(".articles");
+data.forEach(article => {
+  document.querySelector('div.articles').appendChild(articleMaker(article));
 
-const articleElems = data.map(elem =>{
-  return articleMaker(elem);
 })
-
-articleElems.forEach(elem => {
-  articles.appendChild(elem)
-});
 
